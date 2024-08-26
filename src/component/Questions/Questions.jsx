@@ -17,8 +17,7 @@ function Questions() {
             <br/>
             <div className='question'>
               <h3>{item.question}</h3> 
-              <hr />
-              <br />
+              <div className='line'></div>
               <Options options={item.options} />
             </div>
             
