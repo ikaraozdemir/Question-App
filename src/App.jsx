@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import './App.css'
 import QuestionProvider from './context/QuestionProvider'
-import Questions from './component/Questions/Questions'
-
+import Welcome from './component/Welcome/Welcome'
 
 function App() {
-  
+
+
   return (
     <QuestionProvider>
-      <Questions/>
+    <Welcome/>
     </QuestionProvider>
   )
 }
