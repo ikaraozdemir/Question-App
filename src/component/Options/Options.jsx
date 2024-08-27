@@ -1,26 +1,34 @@
-import { useContext } from 'react';
-import { QuestionContext } from '../../context/QuestionProvider.jsx';
+
+import { useQuestionContext } from '../../context/QuestionProvider';
 import './Options.css'
 
 function Options({ options }) {
-  const { showOption, setShowOption } = useContext(QuestionContext);
+  const { showOption,setSelectedOption } = useQuestionContext();
+
+  const handleSelected = (e) => {
+    const selected = e.target.value;
+    setSelectedOption(selected);
+   
+  }
 
   return (
-    <div>
+    (showOption && 
+    (<div>
       <ul>
-        {options.map((item, index) => (
-          <div className='options'>
-          <li key={index}>
+        {options.map((item) => (
+          <div className='options' key={item}>
+          <li >
             <input                     
               type="radio"
               name="question"
-              value={item} />
+              value={item} onChange={handleSelected} />
             {item}
           </li>
           </div>
         ))}
       </ul>
-    </div>
+    </div>)
+    )
   );
 }
 

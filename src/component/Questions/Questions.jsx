@@ -1,32 +1,77 @@
-import questions from '../../../public/questions.js';
-import { useContext } from 'react'
-import { QuestionContext } from '../../context/QuestionProvider.jsx';
+import { useEffect, useState } from 'react';
+// import questions from '../../../public/questions.js';
 import Options from '../Options/Options.jsx';
-import './Questions.css'
+import './Questions.css';
+import { useQuestionContext } from '../../context/QuestionProvider.jsx';
 
 function Questions() {
-  const {showQuestion,setShowQuestion } = useContext(QuestionContext);
+
+  const [showQuestion, setShowQuestion] = useState(false);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+
+  const {
+    setShowOption,
+    setSelectedOption,
+    showOption,selectedOption,questions
+  } = useQuestionContext();
+
+  const currentQuestion = questions[currentQuestionIndex];
+
+
+  useEffect(() => {
+    const displayQuestion = () => {
+      setShowQuestion(true);
+      setShowOption(false);
+
+      setTimeout(() => {
+        setShowOption(true);
+      }, 400); 
+    };
+
+    displayQuestion(); 
+
+    const interval = setInterval(() => {
+      if (currentQuestionIndex < questions.length - 1) {
+        setCurrentQuestionIndex(prev => prev + 1);
+        setSelectedOption(null);
+        displayQuestion();
+      } else {
+        clearInterval(interval);
+      }
+    }, 10000);
+
+    return () => clearInterval(interval);
+
+  }, [currentQuestionIndex]);
+
+
+  useEffect(() => {
+    if (selectedOption !== null && (currentQuestionIndex < questions.length - 1) ) {
+
+      setCurrentQuestionIndex(prev => prev + 1);
+      setSelectedOption(null);
+    }
+  }, [selectedOption]);
+  
 
   return (
     <div className='questions'>
-        {questions.map((item,index) => (
-        <ul key={index}>
-            <li >
-              <h2>{`Q.${index + 1}`}</h2>
-            <img src={item.media} alt={`question${index}`} />
-            <br/>
+      {showQuestion && (
+        <ul key={currentQuestionIndex}>
+          <li>
+            <h2>{`Q.${currentQuestionIndex + 1}`}</h2>
+            <img src={currentQuestion?.media} alt={`question${currentQuestionIndex}`} />
+            <br />
             <div className='question'>
-              <h3>{item.question}</h3> 
+              <h3>{currentQuestion.question}</h3>
               <div className='line'></div>
-              <Options options={item.options} />
+              {showOption && <Options options={currentQuestion.options} />}
             </div>
-            
-
-            </li>
+          </li>
         </ul>
-        ))}
-        
+      )}
     </div>
-  )
+  );
 }
-export default Questions
+
+export default Questions;
