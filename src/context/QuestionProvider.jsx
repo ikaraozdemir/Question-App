@@ -9,13 +9,16 @@ export const useQuestionContext = () => useContext(QuestionContext);
 function QuestionProvider({children}) {
     const [score, setScore] = useState(0);
     const [wrongAnswer, setWrongAnswer] = useState(0);
+    const [emptyQuestions, setEmptyQuestions] =useState(0);
     const [showQuestionPage, setShowQuestionPage] = useState(false);
     const [showOption, setShowOption] = useState(false);
     const [showResult, setShowResult] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
+    const [detailedResult, setDetailedResult] = useState([]);
+
 
   return (
-    <QuestionContext.Provider value = {{score, setScore,wrongAnswer,setWrongAnswer,showOption,setShowOption,showResult,setShowResult,selectedOption, setSelectedOption,showQuestionPage,setShowQuestionPage,questions}}>
+    <QuestionContext.Provider value = {{score, setScore,wrongAnswer,setWrongAnswer,showOption,setShowOption,showResult,setShowResult,selectedOption, setSelectedOption,showQuestionPage,setShowQuestionPage,questions,detailedResult, setDetailedResult}}>
         {children}
     </QuestionContext.Provider>
   )

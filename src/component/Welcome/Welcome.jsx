@@ -9,7 +9,6 @@ function Welcome() {
   return (
     <div className="welcome">
       {showQuestionPage ? (<Questions/>) : 
-
       (
         <>
           <h1>Welcome</h1>

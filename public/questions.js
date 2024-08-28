@@ -28,7 +28,7 @@ const questions = [
     question:
       "What is the name of the unique annual festival held in the town of Pamplona, Spain?",
     options: ["La Tomatina","Running of the Bulls","Feria de Abril","San Juan"],
-    answer: " Running of the Bulls",
+    answer: "Running of the Bulls",
     media: "./pictures/balik.jpg",
   },
   {
@@ -42,7 +42,7 @@ const questions = [
     question:
       "What natural phenomenon is best seen in places like Norway and Iceland?",
     options: ["Solar Eclipse","Aurora Borealis (Northern Lights)","Midnight Sun","Monsoon"],
-    answer: " Aurora Borealis (Northern Lights)",
+    answer: "Aurora Borealis (Northern Lights)",
     media: "./pictures/billboard.jpg",
   },
   {
@@ -54,14 +54,14 @@ const questions = [
   {
     question: "What is the name of the annual music and arts festival held in the Nevada desert?",
     options: ["Coachella","Burning Man","Glastonbury","Lollapalooza"],
-    answer: " Burning Man",
+    answer: "Burning Man",
     media: "./pictures/trex.jpg",
   },
   {
     question:
       "How are the stones that make up the Great Wall of China held together?",
     options: ["Bamboo Mortar", "Mother's Prayer", "Rice Flour", "Noodle"],
-    answer: " Rice Flour",
+    answer: "Rice Flour",
     media: "./pictures/cin-seddi.jpg",
   },
 ];

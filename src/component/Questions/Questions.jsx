@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 // import questions from '../../../public/questions.js';
 import Options from '../Options/Options.jsx';
+import Result from '../Result/Result.jsx'
 import './Questions.css';
 import { useQuestionContext } from '../../context/QuestionProvider.jsx';
 
@@ -12,7 +13,12 @@ function Questions() {
   const {
     setShowOption,
     setSelectedOption,
-    showOption,selectedOption,questions
+    showOption,
+    selectedOption,
+    questions,
+    showResult,
+    setShowResult,
+    setDetailedResult
   } = useQuestionContext();
 
   const currentQuestion = questions[currentQuestionIndex];
@@ -22,6 +28,7 @@ function Questions() {
     const displayQuestion = () => {
       setShowQuestion(true);
       setShowOption(false);
+      setShowOption(null);
 
       setTimeout(() => {
         setShowOption(true);
@@ -33,12 +40,15 @@ function Questions() {
     const interval = setInterval(() => {
       if (currentQuestionIndex < questions.length - 1) {
         setCurrentQuestionIndex(prev => prev + 1);
-        setSelectedOption(null);
+        setSelectedOption(null)
         displayQuestion();
       } else {
+        setShowQuestion(false);
+        setDetailedResult((prev) => [...prev, {id:prev.length + 1, value:`Empty`}])
+        setShowResult(true);
         clearInterval(interval);
       }
-    }, 10000);
+    }, 3000);
 
     return () => clearInterval(interval);
 
@@ -46,15 +56,24 @@ function Questions() {
 
 
   useEffect(() => {
-    if (selectedOption !== null && (currentQuestionIndex < questions.length - 1) ) {
-
-      setCurrentQuestionIndex(prev => prev + 1);
-      setSelectedOption(null);
+    console.log(selectedOption)
+    if (selectedOption !== null) {
+      if (currentQuestionIndex < questions.length - 1) {
+        setCurrentQuestionIndex(prev => prev + 1);
+      } else {
+        setShowQuestion(false);
+        setShowResult(true);
+      }
+    }else if (selectedOption === null && currentQuestionIndex >= 0 && currentQuestionIndex <questions.length){
+      setDetailedResult((prev) => [...prev, {id:prev.length + 1, value:`Empty`}])
     }
   }, [selectedOption]);
   
 
+  
+
   return (
+    <>
     <div className='questions'>
       {showQuestion && (
         <ul key={currentQuestionIndex}>
@@ -65,12 +84,16 @@ function Questions() {
             <div className='question'>
               <h3>{currentQuestion.question}</h3>
               <div className='line'></div>
-              {showOption && <Options options={currentQuestion.options} />}
+              {showOption && <Options currentQuestion={currentQuestion} />}
             </div>
           </li>
         </ul>
       )}
     </div>
+    {showResult &&
+      <Result/>
+    }
+    </>
   );
 }
 
