@@ -26,11 +26,11 @@ function Questions() {
   const currentQuestion = questions[currentQuestionIndex];
 
 
-useEffect(() => {
-  if (currentQuestionIndex < questions.length - 1) {
+  useEffect(() => {
     const displayQuestion = () => {
       setShowQuestion(true);
       setShowOption(false);
+      setShowOption(null);
       setTimeout(() => {
         setShowOption(true);
       }, 400); 
@@ -39,27 +39,42 @@ useEffect(() => {
     displayQuestion(); 
 
     const interval = setInterval(() => {
-      if (selectedOption === null) {
-        setDetailedResult(prev => [
-          ...prev, 
-          { id: prev.length + 1, value: "Empty", correct: `${currentQuestion.answer}` }
-        ]);
-        console.log("Empty");
+      if (currentQuestionIndex < questions.length - 1) {
+        // if(questionState === null){
+        //   setDetailedResult((prev) => {
+        //     const newResultEmpty = { id: prev.length + 1, value: "Empty", correct: `${currentQuestion.answer}` };
+        //     console.log("Empty");
+        //     return [...prev, newResultEmpty];
+        //   });
+        // } else if (questionState === true) {
+        //   setDetailedResult((prev) => {
+        //     const newResultTrue = { id: prev.length + 1, value: "True", correct: `${currentQuestion.answer}` };
+        //     console.log("True");
+        //     return [...prev, newResultTrue];
+        //   });
+        // } else if (questionState === false) {
+        //   setDetailedResult((prev) => {
+        //     const newResultFalse = { id: prev.length + 1, value: "False", correct: `${currentQuestion.answer}` };
+        //     console.log("False");
+        //     return [...prev, newResultFalse];
+        //   });
+        // }
+        console.log(questionState);
+        setCurrentQuestionIndex(prev => prev + 1);
+        setQuestionState(null)
+        setSelectedOption(null)
+        setQuestionState(null)
+        displayQuestion();
+      } else {
+        setShowQuestion(false);
+        setShowResult(true);
+        clearInterval(interval);
       }
-
-      setCurrentQuestionIndex(prev => prev + 1);
-      setSelectedOption(null);
-      setQuestionState(null);
-      displayQuestion();
     }, 3000);
 
     return () => clearInterval(interval);
-  } else {
-    setShowQuestion(false);
-    setShowResult(true);
-  }
-}, [currentQuestionIndex]);
 
+  }, [currentQuestionIndex]);
 
 
   useEffect(() => {
