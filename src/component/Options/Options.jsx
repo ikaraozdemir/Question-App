@@ -9,23 +9,17 @@ function Options({ currentQuestion }) {
     const selected = e.target.value;
     setSelectedOption(selected);
   
-    // Doğru cevabı seçmişse
     if(currentQuestion.answer === selected) {
       setScore(prev => prev + 1);
       setQuestionState(true);
-  
-      // Detaylı sonuçlara 'True' ekle
       setDetailedResult(prev => [
         ...prev,
         { id: prev.length + 1, value: "True", correct: currentQuestion.answer }
       ]);
     } 
-    // Yanlış cevabı seçmişse
     else {
       setWrongAnswer(prev => prev + 1);
       setQuestionState(false);
-  
-      // Detaylı sonuçlara 'False' ekle
       setDetailedResult(prev => [
         ...prev,
         { id: prev.length + 1, value: "False", correct: currentQuestion.answer }
@@ -33,7 +27,6 @@ function Options({ currentQuestion }) {
     }
   };
   
-
   return (
     (showOption && 
     (<div>

@@ -19,7 +19,6 @@ function Questions() {
     showResult,
     setShowResult,
     setDetailedResult,
-    questionState,
     setQuestionState
   } = useQuestionContext();
 
@@ -38,39 +37,23 @@ function Questions() {
 
     displayQuestion(); 
 
-    const interval = setInterval(() => {
-      if (currentQuestionIndex < questions.length - 1) {
-        // if(questionState === null){
-        //   setDetailedResult((prev) => {
-        //     const newResultEmpty = { id: prev.length + 1, value: "Empty", correct: `${currentQuestion.answer}` };
-        //     console.log("Empty");
-        //     return [...prev, newResultEmpty];
-        //   });
-        // } else if (questionState === true) {
-        //   setDetailedResult((prev) => {
-        //     const newResultTrue = { id: prev.length + 1, value: "True", correct: `${currentQuestion.answer}` };
-        //     console.log("True");
-        //     return [...prev, newResultTrue];
-        //   });
-        // } else if (questionState === false) {
-        //   setDetailedResult((prev) => {
-        //     const newResultFalse = { id: prev.length + 1, value: "False", correct: `${currentQuestion.answer}` };
-        //     console.log("False");
-        //     return [...prev, newResultFalse];
-        //   });
-        // }
-        console.log(questionState);
-        setCurrentQuestionIndex(prev => prev + 1);
-        setQuestionState(null)
-        setSelectedOption(null)
-        setQuestionState(null)
-        displayQuestion();
-      } else {
+      if (currentQuestionIndex < questions.length ) {
+        var interval = setInterval(()=>{
+          setDetailedResult(prev => [
+            ...prev,
+            { id: prev.length + 1, value: "Empty", correct: currentQuestion.answer }
+          ]);
+          setCurrentQuestionIndex(prev => prev + 1);
+          setSelectedOption(null)
+          setQuestionState(null)
+          displayQuestion();
+        },3000)  
+      }
+       else {
         setShowQuestion(false);
         setShowResult(true);
         clearInterval(interval);
       }
-    }, 3000);
 
     return () => clearInterval(interval);
 
@@ -100,7 +83,7 @@ function Questions() {
             <img src={currentQuestion?.media} alt={`question${currentQuestionIndex}`} />
             <br />
             <div className='question'>
-              <h3>{currentQuestion.question}</h3>
+              <h3>{currentQuestion?.question}</h3>
               <div className='line'></div>
               {showOption && <Options currentQuestion={currentQuestion} />}
             </div>
