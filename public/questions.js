@@ -41,8 +41,8 @@ const questions = [
   {
     question:
       "What natural phenomenon is best seen in places like Norway and Iceland?",
-    options: ["Solar Eclipse","Aurora Borealis (Northern Lights)","Midnight Sun","Monsoon"],
-    answer: "Aurora Borealis (Northern Lights)",
+    options: ["Solar Eclipse","Aurora Borealis","Midnight Sun","Monsoon"],
+    answer: "Aurora Borealis",
     media: "./pictures/question7.webp",
   },
   {
