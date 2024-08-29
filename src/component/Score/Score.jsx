@@ -9,11 +9,13 @@ function Score() {
 
   return (
     <>
+    <br />
     <div style={{color:`green`}}>True: {score}</div>
     <div style={{color:`red`}}>False: {wrongAnswer}</div>
     <div style={{color:`yellow`}}>Empty: {emptyQuestions}</div>
     <br />
-    <ul className="ull">
+    <br />
+    <ul className="score-ul">
         {detailedResult.map((item) => (
           <div className='score-items' key={item.id}>
             <li >

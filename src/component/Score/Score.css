@@ -1,7 +1,14 @@
-.ull {
+.score-ul {
     display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap:1rem;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    padding: 0 6rem;
+}
+
+.score-items {
+    width:80%;
+    justify-self: center;
+    
 
 }
 
