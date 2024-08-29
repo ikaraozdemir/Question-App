@@ -1,4 +1,5 @@
 import { useQuestionContext } from "../../context/QuestionProvider"
+import './Score.css'
 
 
 function Score() {
@@ -8,18 +9,24 @@ function Score() {
 
   return (
     <>
-    <div>True: {score}</div>
-    <div>False: {wrongAnswer}</div>
-    <div>Empty: {emptyQuestions}</div>
+    <div style={{color:`green`}}>True: {score}</div>
+    <div style={{color:`red`}}>False: {wrongAnswer}</div>
+    <div style={{color:`yellow`}}>Empty: {emptyQuestions}</div>
     <br />
-    <ul>
+    <ul className="ull">
         {detailedResult.map((item) => (
-          <div className='options' key={item.id}>
-          <li >
-            <div>{item.id}</div>
-            <br />
-            <div>{item.value}</div>
-          </li>
+          <div className='score-items' key={item.id}>
+            <li >
+              <br />
+              <div className="question-number">Q.{item.id}</div>
+              <div style={{
+    color: item.value === "True" ? 'green' : 
+           item.value === "False" ? 'red' : 
+           'yellow' 
+  }} >{item.value}</div>
+              <div>Correct Answer: {item.correct}</div>
+              <br />
+            </li>
           </div>
         ))}
       </ul>

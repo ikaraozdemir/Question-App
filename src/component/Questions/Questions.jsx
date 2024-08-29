@@ -18,18 +18,19 @@ function Questions() {
     questions,
     showResult,
     setShowResult,
-    setDetailedResult
+    setDetailedResult,
+    questionState,
+    setQuestionState
   } = useQuestionContext();
 
   const currentQuestion = questions[currentQuestionIndex];
 
 
-  useEffect(() => {
+useEffect(() => {
+  if (currentQuestionIndex < questions.length - 1) {
     const displayQuestion = () => {
       setShowQuestion(true);
       setShowOption(false);
-      setShowOption(null);
-
       setTimeout(() => {
         setShowOption(true);
       }, 400); 
@@ -38,21 +39,27 @@ function Questions() {
     displayQuestion(); 
 
     const interval = setInterval(() => {
-      if (currentQuestionIndex < questions.length - 1) {
-        setCurrentQuestionIndex(prev => prev + 1);
-        setSelectedOption(null)
-        displayQuestion();
-      } else {
-        setShowQuestion(false);
-        setDetailedResult((prev) => [...prev, {id:prev.length + 1, value:`Empty`}])
-        setShowResult(true);
-        clearInterval(interval);
+      if (selectedOption === null) {
+        setDetailedResult(prev => [
+          ...prev, 
+          { id: prev.length + 1, value: "Empty", correct: `${currentQuestion.answer}` }
+        ]);
+        console.log("Empty");
       }
+
+      setCurrentQuestionIndex(prev => prev + 1);
+      setSelectedOption(null);
+      setQuestionState(null);
+      displayQuestion();
     }, 3000);
 
     return () => clearInterval(interval);
+  } else {
+    setShowQuestion(false);
+    setShowResult(true);
+  }
+}, [currentQuestionIndex]);
 
-  }, [currentQuestionIndex]);
 
 
   useEffect(() => {
@@ -64,13 +71,9 @@ function Questions() {
         setShowQuestion(false);
         setShowResult(true);
       }
-    }else if (selectedOption === null && currentQuestionIndex >= 0 && currentQuestionIndex <questions.length){
-      setDetailedResult((prev) => [...prev, {id:prev.length + 1, value:`Empty`}])
     }
   }, [selectedOption]);
-  
 
-  
 
   return (
     <>

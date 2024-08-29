@@ -15,10 +15,11 @@ function QuestionProvider({children}) {
     const [showResult, setShowResult] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
     const [detailedResult, setDetailedResult] = useState([]);
+    const [questionState,setQuestionState] = useState(null);
 
 
   return (
-    <QuestionContext.Provider value = {{score, setScore,wrongAnswer,setWrongAnswer,showOption,setShowOption,showResult,setShowResult,selectedOption, setSelectedOption,showQuestionPage,setShowQuestionPage,questions,detailedResult, setDetailedResult}}>
+    <QuestionContext.Provider value = {{score, setScore,wrongAnswer,setWrongAnswer,showOption,setShowOption,showResult,setShowResult,selectedOption, setSelectedOption,showQuestionPage,setShowQuestionPage,questions,detailedResult, setDetailedResult,questionState,setQuestionState}}>
         {children}
     </QuestionContext.Provider>
   )

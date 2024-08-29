@@ -1,0 +1,17 @@
+.ull {
+    display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:1rem;
+
+}
+
+.score-items li{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.score-items .question-number {
+    font-weight: 800;
+    text-decoration: underline;
+}
