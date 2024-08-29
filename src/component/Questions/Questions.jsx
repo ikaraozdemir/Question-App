@@ -24,7 +24,6 @@ function Questions() {
 
   const currentQuestion = questions[currentQuestionIndex];
 
-
   useEffect(() => {
     const displayQuestion = () => {
       setShowQuestion(true);
@@ -63,7 +62,7 @@ function Questions() {
   useEffect(() => {
     console.log(selectedOption)
     if (selectedOption !== null) {
-      if (currentQuestionIndex < questions.length - 1) {
+      if (currentQuestionIndex < questions.length ) {
         setCurrentQuestionIndex(prev => prev + 1);
       } else {
         setShowQuestion(false);

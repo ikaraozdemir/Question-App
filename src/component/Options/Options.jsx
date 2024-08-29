@@ -31,7 +31,7 @@ function Options({ currentQuestion }) {
     (showOption && 
     (<div>
       <ul>
-        {currentQuestion.options.map((item) => (
+        {currentQuestion?.options.map((item) => (
           <div className='options' key={item}>
           <li >
             <input                     
