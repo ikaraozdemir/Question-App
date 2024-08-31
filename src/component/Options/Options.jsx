@@ -3,7 +3,7 @@ import { useQuestionContext } from '../../context/QuestionProvider';
 import './Options.css'
 
 function Options({ currentQuestion }) {
-  const { showOption,setSelectedOption,setScore, setWrongAnswer,setDetailedResult,setQuestionState} = useQuestionContext();
+  const { showOption,setSelectedOption,setScore, setWrongAnswer,setDetailedResult,setQuestionState,selectedOption} = useQuestionContext();
 
   const handleSelected = (e) => {
     const selected = e.target.value;
@@ -14,7 +14,7 @@ function Options({ currentQuestion }) {
       setQuestionState(true);
       setDetailedResult(prev => [
         ...prev,
-        { id: prev.length + 1, value: "True", correct: currentQuestion.answer }
+        { id: prev.length + 1, value: "True", userAnswer:selected, correct: currentQuestion.answer }
       ]);
     } 
     else {
@@ -22,7 +22,7 @@ function Options({ currentQuestion }) {
       setQuestionState(false);
       setDetailedResult(prev => [
         ...prev,
-        { id: prev.length + 1, value: "False", correct: currentQuestion.answer }
+        { id: prev.length + 1, value: "False",userAnswer:selected, correct: currentQuestion.answer }
       ]);
     }
   };

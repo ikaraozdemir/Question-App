@@ -19,12 +19,12 @@ function Score() {
           <div className='score-items' key={item.id}>
             <li >
               <div className="question-number">Q.{item.id}</div>
-              <div style={{
-    color: item.value === "True" ? 'green' : 
-           item.value === "False" ? 'red' : 
-           'yellow' 
-  }} >{item.value}</div>
+              <div>Your Answer: {item.userAnswer}</div>
               <div>Correct Answer: {item.correct}</div>
+              <div style={{
+                            color: item.value === "True" ? 'green' : 
+                            item.value === "False" ? 'red' : 'yellow'  
+                          }} >{item.value}</div>
               <br />
             </li>
           </div>

@@ -41,7 +41,7 @@ function Questions() {
         var interval = setInterval(()=>{
           setDetailedResult(prev => [
             ...prev,
-            { id: prev.length + 1, value: "Empty", correct: currentQuestion.answer }
+            { id: prev.length + 1, value: "Empty", userAnswer: "", correct: currentQuestion.answer }
           ]);
           setCurrentQuestionIndex(prev => prev + 1);
           setSelectedOption(null)
