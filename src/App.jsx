@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 import QuestionProvider from './context/QuestionProvider'
 import Welcome from './component/Welcome/Welcome'

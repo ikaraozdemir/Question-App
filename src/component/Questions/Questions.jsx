@@ -32,7 +32,7 @@ function Questions() {
       setShowOption(null);
       setTimeout(() => {
         setShowOption(true);
-      }, 400); 
+      }, 4000); 
     };
 
     displayQuestion(); 
@@ -47,7 +47,7 @@ function Questions() {
           setSelectedOption(null)
           setQuestionState(null)
           displayQuestion();
-        },3000)  
+        },30000)  
       }
        else {
         setShowQuestion(false);
