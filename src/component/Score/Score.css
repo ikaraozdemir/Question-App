@@ -1,15 +1,25 @@
-.score-ul {
+.short-score{
+    height: auto;
+    margin: 3rem 0;
+    text-align: center;
+}
+
+.short-score h3{
+    margin: 0;
+}
+
+.detailed-score{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     align-items: center;
     padding: 0 6rem;
+    margin:0;
 }
 
 .score-items {
     width:80%;
+    height: 80%;
     justify-self: center;
-    
-
 }
 
 .score-items li{

@@ -7,17 +7,17 @@ function Welcome() {
   const { showQuestionPage, setShowQuestionPage } = useQuestionContext();
 
   return (
-    <div className="welcome">
+    <>
       {showQuestionPage ? (<Questions/>) : 
       (
-        <>
+        <div className="welcome">
           <h1>Welcome</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto est laudantium vitae magnam earum alias atque, saepe nemo itaque dignissimos.</p>
+          <h3>With this fun and informative quiz, explore the most mysterious and fascinating places around the world. Each question will take you to a different geography, culture, or natural wonder. Along your journey, you'll test your knowledge and learn something new!</h3>
           <button id='start' onClick={() => setShowQuestionPage(true)}>Start</button>
-        </>
+        </div>
       )}
       
-    </div>
+    </>
   );
 }
 

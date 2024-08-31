@@ -9,6 +9,7 @@ function Questions() {
 
   const [showQuestion, setShowQuestion] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  
 
   const {
     setShowOption,
@@ -51,6 +52,10 @@ function Questions() {
        else {
         setShowQuestion(false);
         setShowResult(true);
+        const questionDiv = document.querySelector('.questions'); 
+        if (questionDiv) {
+          questionDiv.classList.remove('questions');
+        }
         clearInterval(interval);
       }
 
@@ -71,7 +76,6 @@ function Questions() {
     }
   }, [selectedOption]);
 
-
   return (
     <>
     <div className='questions'>
@@ -80,7 +84,6 @@ function Questions() {
           <li>
             <h2>{`Q.${currentQuestionIndex + 1}`}</h2>
             <img src={currentQuestion?.media} alt={`question${currentQuestionIndex}`} />
-            <br />
             <div className='question'>
               <h3>{currentQuestion?.question}</h3>
               <div className='line'></div>

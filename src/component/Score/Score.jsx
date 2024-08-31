@@ -9,17 +9,15 @@ function Score() {
 
   return (
     <>
-    <br />
-    <div style={{color:`green`}}>True: {score}</div>
-    <div style={{color:`red`}}>False: {wrongAnswer}</div>
-    <div style={{color:`yellow`}}>Empty: {emptyQuestions}</div>
-    <br />
-    <br />
-    <ul className="score-ul">
+    <div className="short-score">
+      <h3 style={{color:`green`}}>True: {score}</h3>
+      <h3 style={{color:`red`}}>False: {wrongAnswer}</h3>
+      <h3 style={{color:`yellow`}}>Empty: {emptyQuestions}</h3>
+    </div>
+    <ul className="detailed-score">
         {detailedResult.map((item) => (
           <div className='score-items' key={item.id}>
             <li >
-              <br />
               <div className="question-number">Q.{item.id}</div>
               <div style={{
     color: item.value === "True" ? 'green' : 
