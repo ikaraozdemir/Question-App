@@ -1,7 +1,6 @@
 import { Children, createContext, useContext, useState } from 'react';
 import questions from '../../public/questions.js';
 
-
 const QuestionContext = createContext();
 
 export const useQuestionContext = () => useContext(QuestionContext);
@@ -16,7 +15,6 @@ function QuestionProvider({children}) {
     const [selectedOption, setSelectedOption] = useState(null);
     const [detailedResult, setDetailedResult] = useState([]);
     const [questionState,setQuestionState] = useState(null);
-
 
   return (
     <QuestionContext.Provider value = {{score, setScore,wrongAnswer,setWrongAnswer,showOption,setShowOption,showResult,setShowResult,selectedOption, setSelectedOption,showQuestionPage,setShowQuestionPage,questions,detailedResult, setDetailedResult,questionState,setQuestionState}}>

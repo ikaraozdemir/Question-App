@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-// import questions from '../../../public/questions.js';
 import Options from '../Options/Options.jsx';
 import Result from '../Result/Result.jsx'
 import './Questions.css';
@@ -10,7 +9,6 @@ function Questions() {
   const [showQuestion, setShowQuestion] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   
-
   const {
     setShowOption,
     setSelectedOption,
